@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cook - Delicious Recipes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
+            <line x1="6" y1="17" x2="18" y2="17"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Cook.</h1>
+          <span class="brand-tag">Master Chef Studio</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-filter="all">
+          <span class="icon">🍳</span>
+          <span>All Recipes</span>
+          <span class="badge" id="count-all">25</span>
+        </button>
+        <button class="nav-item" data-filter="breakfast">
+          <span class="icon">🥐</span>
+          <span>Breakfast</span>
+          <span class="badge" id="count-breakfast">0</span>
+        </button>
+        <button class="nav-item" data-filter="main">
+          <span class="icon">🍝</span>
+          <span>Main Dishes</span>
+          <span class="badge" id="count-main">0</span>
+        </button>
+        <button class="nav-item" data-filter="soup-salad">
+          <span class="icon">🥗</span>
+          <span>Soups & Salads</span>
+          <span class="badge" id="count-soup-salad">0</span>
+        </button>
+        <button class="nav-item" data-filter="dessert">
+          <span class="icon">🍰</span>
+          <span>Desserts & Baking</span>
+          <span class="badge" id="count-dessert">0</span>
+        </button>
+        <button class="nav-item" data-filter="drinks">
+          <span class="icon">🍹</span>
+          <span>Drinks & Snacks</span>
+          <span class="badge" id="count-drinks">0</span>
+        </button>
+        <button class="nav-item" data-filter="favorites">
+          <span class="icon">⭐</span>
+          <span>Favorites</span>
+          <span class="badge" id="count-fav">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="cooking-tip-box">
+          <div class="tip-header">💡 Chef's Secret Tip</div>
+          <p id="daily-tip">Season in layers: add salt at different stages of cooking, not just at the end!</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <header class="topbar">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="search-input" placeholder="Search 25 delicious recipes, ingredients, tags..." />
+          <button id="clear-search" class="clear-btn hidden">&times;</button>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="filter-dropdown-wrapper">
+            <select id="difficulty-select" class="custom-select">
+              <option value="all">Any Difficulty</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+            </select>
+          </div>
+          <div class="filter-dropdown-wrapper">
+            <select id="time-select" class="custom-select">
+              <option value="all">Any Duration</option>
+              <option value="15">Under 15 mins</option>
+              <option value="30">Under 30 mins</option>
+              <option value="45">Under 45 mins</option>
+              <option value="60">Under 1 Hour</option>
+            </select>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-text">
+          <span class="hero-chip">✨ Discover, Cook & Savor</span>
+          <h2>Explore 25 Hand-Crafted Culinary Masterpieces</h2>
+          <p>From 15-minute quick breakfasts to exquisite Michelin-level dinners, step-by-step guidance tailored for you.</p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-num">25</span>
+            <span class="stat-label">Full Recipes</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Categories</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Tested & Proven</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recipe Grid -->
+      <section class="recipe-section">
+        <div class="section-header">
+          <div>
+            <h3 id="section-title">All Recipes</h3>
+            <p id="section-subtitle" class="text-muted">Showing 25 delicious recipes</p>
+          </div>
+          <div class="view-controls">
+            <button id="random-recipe-btn" class="btn btn-secondary">
+              🎲 Surprise Me!
+            </button>
+          </div>
+        </div>
+
+        <div class="recipes-grid" id="recipes-grid">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div id="no-results" class="no-results hidden">
+          <div class="no-results-icon">🔍</div>
+          <h3>No matching recipes found</h3>
+          <p>Try adjusting your search terms, difficulty, or duration filters.</p>
+          <button id="reset-filters-btn" class="btn btn-primary">Reset Filters</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Fullscreen Recipe Modal -->
+  <div class="modal-backdrop hidden" id="recipe-modal">
+    <div class="modal-dialog">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      <div class="modal-body" id="modal-content">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </div>
+
+  <script src="recipes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
