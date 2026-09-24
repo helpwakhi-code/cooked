@@ -1,165 +1,83 @@
-# 🍳 Cooked - Delicious Recipes
+# 🍳 Cooked 2.0 - Ultra 3D Interactive Culinary Experience
 
-A beautiful, responsive web application featuring 25 curated recipes with search, filtering, and a rich interactive interface.
+A breathtaking, futuristic recipe web application featuring **40 curated international recipes**, immersive **3D perspective tilt animations**, an **ambient canvas particle engine**, glassmorphism dark luxury theme, built-in interactive kitchen cooking timer, Web Audio synthesizers, and real-time smart search and filtering.
 
 ![Cooked App](https://images.unsplash.com/photo-1525351484163-7529414344d8?w=1200)
 
-## ✨ Features
+---
 
-- 📝 **25 Curated Recipes** - A diverse collection of breakfast, main dishes, desserts, and more
-- 🔍 **Smart Search** - Search by name, ingredients, or tags
-- 🏷 **Category Filtering** - Filter by Breakfast, Main Dishes, Soups & Salads, Desserts & Baking, Drinks & Snacks
-- ⭐ **Favorites System** - Save your favorite recipes (persisted in localStorage)
-- 🎯 **Difficulty & Time Filters** - Sort by difficulty level or cooking time
-- 🖨 **Print/PDF Ready** - Professional print layout for recipes
-- 📱 **Fully Responsive** - Beautiful on desktop, tablet, and mobile
-- 🎨 **Modern Design** - Clean, modern interface with smooth animations
-- 💡 **Chef's Tips** - Learn from professional cooking tips
+## 🚀 What's New in 2.0 (100x Upgrade)
 
-## 🍵 Categories
-
-- **Breakfast** - Start your day right with morning classics
-- **Main Dishes** - Hearty meals for dinner and lunch
-- **Soups & Salads** - Fresh and healthy options
-- **Desserts & Baking** - Sweet treats and baked goods
-- **Drinks & Snacks** - Refreshing drinks and quick bites
-
-## 🚀 Quick Start
-
-1. **Download or Clone**
-   ```bash
-   git clone https://github.com/your-username/cooked.git
-   cd cooked
-   ```
-
-2. **Open in Browser**
-   Simply open `index.html` in any modern web browser.
-
-3. **That's it!** No build process, no dependencies - just open and start cooking!
-
-## 📂 File Structure
-
-```
-cooked/
-├── index.html          # Main application file
-├── recipes.js          # All 25 recipes data
-├── app.js              # Application logic and interactivity
-├── style.css           # Modern responsive styling
-└── README.md          # This file
-```
-
-## 🛠️ How to Deploy to GitHub Pages
-
-### Option 1: GitHub Pages (Recommended)
-
-1. **Initialize Git (if you haven't already)**
-   ```bash
-   cd cooked
-   git init
-   ```
-
-2. **Create a new repository on GitHub** at https://github.com/new
-
-3. **Add remote and push**
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-4. **Enable GitHub Pages**
-   - Go to your repository on GitHub
-   - Click **Settings** → **Pages**
-   - Under **Build and deployment** → **Branch**, select `main` folder and click **Save**
-   - Wait a few minutes - your site will be live at: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME`
-
-### Option 2: Netlify (Free, Easy)
-
-1. **Install Netlify CLI**
-   ```bash
-   npm install -g netlify-cli
-   ```
-
-2. **Deploy**
-   ```bash
-   netlify deploy --prod
-   ```
-
-   Follow the prompts - Netlify will give you a live link instantly!
-
-### Option 3: Vercel (Free, Fast)
-
-1. **Install Vercel CLI**
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Deploy**
-   ```bash
-   vercel --prod
-   ```
-
-   Vercel will build and deploy your app instantly!
-
-## 🎨 Customization
-
-### Adding New Recipes
-
-Edit `recipes.js` to add new recipes:
-
-```javascript
-{
-  id: 26,
-  title: "Your Recipe Name",
-  tags: ["category", "keywords"],
-  prepTime: 15,
-  cookTime: 30,
-  totalTime: 45,
-  difficulty: "Easy",
-  category: "breakfast",
-  description: "Brief recipe description",
-  image: "https://source.unsplash.com/...",
-  ingredients: ["ingredient 1", "ingredient 2"],
-  instructions: ["Step 1", "Step 2"],
-  tip: "Pro tip here!"
-}
-```
-
-### Changing Colors
-
-Edit `style.css` variables in the `:root` section:
-
-```css
-:root {
-  --primary: #f97316;      /* Main brand color */
-  --secondary: #10b981;    /* Secondary accent */
-  --background: #fff7ed;   /* Page background */
-}
-```
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 🤝 Contributing
-
-Feel free to fork this project, add your own recipes, and submit pull requests!
-
-## 📄 License
-
-This project is open source and available for personal and commercial use.
-
-## 🙏 Credits
-
-- Recipe images from Unsplash
-- CSS framework based on custom clean design
-- Icons from standard SVG library
+- ✨ **3D Perspective Card Tilt & Glow**: Real-time cursor tracking creates authentic 3D spatial rotation on cards with interactive radial specular highlights.
+- 🌌 **Ambient Canvas Particle Engine**: Floating semi-transparent culinary emoji particles drift through 3D background space smoothly.
+- 💎 **Glassmorphism Dark Luxury Theme**: Crafted with deep navy/charcoal backgrounds (`#0a0a1a`, `#1a1a2e`), neon orange/purple accents, and frosted glass panels (`backdrop-filter`).
+- 🌓 **Dynamic Dark / Light Theme Toggle**: Seamless transition between cyber luxury dark mode and warm modern light mode (persisted in `localStorage`).
+- 🍲 **40 Curated Global Masterpieces**: Expanded from 25 to 40 recipes covering Italian, French, Japanese, Korean, Thai, Indian, Mexican, Greek, Middle Eastern, and American cuisines.
+- 📊 **Complete Nutritional Breakdown**: Every recipe features detailed calories, protein, carbs, fat, cuisine, allergens, and dietary tags.
+- ⏱️ **Interactive Kitchen Timer**: Built-in countdown timer in modal dialogs with start, pause, reset, and Web Audio alarm notifications.
+- ⭐ **Interactive Star Ratings**: Live 5-star rating system with local persistence and instant average calculation.
+- 🎉 **Confetti & Web Audio Effects**: Micro-interaction particle confetti explosions and synthesized sound chimes for saves, timer alerts, and filter changes.
+- 📱 **Responsive 3D Glass Mobile Sidebar**: Smooth animated glass drawer for mobile devices.
+- ⌨️ **Keyboard Navigation**: Full spatial navigation with Arrow Keys, Enter to inspect recipes, and Escape to close modals.
+- 🖨️ **Print & PDF Mode**: Clean media query optimized printable recipe blueprint cards.
 
 ---
 
-Made with ❤️ by [Your Name]
+## 🍵 Recipe Categories
 
-**Enjoy cooking with Cooked! 🍳✨**
+- **🍳 All Recipes (40)** - Complete culinary repertoire
+- **🥐 Breakfast (6)** - Energy-boosting mornings
+- **🍝 Main Dishes (18)** - Michelin-inspired dinners, pastas, bowls, and curries
+- **🥗 Soups & Salads (5)** - Crisp greens, warm broths, and fresh bowls
+- **🍰 Desserts & Baking (6)** - Decadent cakes, cookies, and sweet treats
+- **🍹 Drinks & Snacks (5)** - Refreshing smoothies, cocktails, and quick bites
+- **❤️ Saved Favorites** - Instant local bookmarking
+
+---
+
+## 🚀 Quick Start
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/helpwakhi-code/cooked.git
+   cd cooked
+   ```
+
+2. **Open in Browser**:
+   Open `index.html` in any modern web browser (Chrome, Edge, Firefox, Safari).
+
+3. **No Build Step Required**:
+   Pure, vanilla modern web standards — Zero dependencies, instant 60 FPS performance!
+
+---
+
+## 📂 File Architecture
+
+```
+cooked/
+├── index.html          # Semantic HTML5 structure with canvas and modal layers
+├── style.css           # 1,400+ lines of 3D animations, glassmorphism, and responsive styling
+├── app.js              # Ultra-fast vanilla JS engine (tilt, particles, audio, timer, filters)
+├── recipes.js          # Complete 40-recipe database with full nutritional and allergen metadata
+├── DEPLOY.md           # Deployment instructions (GitHub Pages, Vercel, Netlify)
+└── README.md          # Documentation and release notes
+```
+
+---
+
+## 🛠️ Deploy to GitHub Pages
+
+1. Commit and push your changes:
+   ```bash
+   git add .
+   git commit -m "Release Cooked 2.0: 3D animations, canvas particles & 40 recipes"
+   git push origin master
+   ```
+
+2. Go to repository **Settings** → **Pages** on GitHub.
+3. Under **Branch**, select `master` (root folder) and click **Save**.
+4. Your site will be live at `https://helpwakhi-code.github.io/cooked/`!
+
+---
+
+Enjoy cooking with Cooked 2.0! 🍳✨

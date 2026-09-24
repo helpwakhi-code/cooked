@@ -1,172 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cook - Delicious Recipes</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cooked - A stunning recipe web application.">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Cooked - Recipes">
+    <meta property="og:description" content="Discover and save your favorite recipes with Cooked.">
+    <meta property="og:type" content="website">
+    <title>Cooked - Recipe App</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Structured Data (JSON-LD) for Recipe -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Cooked",
+      "description": "A recipe discovery application.",
+      "url": "https://cooked-app.example.com"
+    }
+    </script>
 </head>
 <body>
-  <div class="app-layout">
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-logo">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
-            <line x1="6" y1="17" x2="18" y2="17"/>
-          </svg>
-        </div>
-        <div>
-          <h1 class="brand-title">Cook.</h1>
-          <span class="brand-tag">Master Chef Studio</span>
-        </div>
-      </div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-      <nav class="nav-menu">
-        <button class="nav-item active" data-filter="all">
-          <span class="icon">🍳</span>
-          <span>All Recipes</span>
-          <span class="badge" id="count-all">25</span>
+    <!-- SVG Filters for Glow Effects -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="10" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="app-layout">
+        <button id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span><span></span><span></span>
         </button>
-        <button class="nav-item" data-filter="breakfast">
-          <span class="icon">🥐</span>
-          <span>Breakfast</span>
-          <span class="badge" id="count-breakfast">0</span>
-        </button>
-        <button class="nav-item" data-filter="main">
-          <span class="icon">🍝</span>
-          <span>Main Dishes</span>
-          <span class="badge" id="count-main">0</span>
-        </button>
-        <button class="nav-item" data-filter="soup-salad">
-          <span class="icon">🥗</span>
-          <span>Soups & Salads</span>
-          <span class="badge" id="count-soup-salad">0</span>
-        </button>
-        <button class="nav-item" data-filter="dessert">
-          <span class="icon">🍰</span>
-          <span>Desserts & Baking</span>
-          <span class="badge" id="count-dessert">0</span>
-        </button>
-        <button class="nav-item" data-filter="drinks">
-          <span class="icon">🍹</span>
-          <span>Drinks & Snacks</span>
-          <span class="badge" id="count-drinks">0</span>
-        </button>
-        <button class="nav-item" data-filter="favorites">
-          <span class="icon">⭐</span>
-          <span>Favorites</span>
-          <span class="badge" id="count-fav">0</span>
-        </button>
-      </nav>
 
-      <div class="sidebar-footer">
-        <div class="cooking-tip-box">
-          <div class="tip-header">💡 Chef's Secret Tip</div>
-          <p id="daily-tip">Season in layers: add salt at different stages of cooking, not just at the end!</p>
-        </div>
-      </div>
-    </aside>
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>" alt="Cooked Logo" class="brand-logo" loading="lazy">
+                <h1 class="brand-title">Cooked</h1>
+                <span class="brand-tag">v2.0</span>
+            </div>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <header class="topbar">
-        <div class="search-wrapper">
-          <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" id="search-input" placeholder="Search 25 delicious recipes, ingredients, tags..." />
-          <button id="clear-search" class="clear-btn hidden">&times;</button>
-        </div>
+            <nav class="nav-menu" aria-label="Recipe Categories">
+                <button class="nav-item active" data-filter="all" aria-label="Show all recipes">
+                    All Recipes <span id="count-all" class="badge">0</span>
+                </button>
+                <button class="nav-item" data-filter="breakfast" aria-label="Show breakfast recipes">
+                    Breakfast <span id="count-breakfast" class="badge">0</span>
+                </button>
+                <button class="nav-item" data-filter="main" aria-label="Show main courses">
+                    Main Course <span id="count-main" class="badge">0</span>
+                </button>
+                <button class="nav-item" data-filter="soup-salad" aria-label="Show soups and salads">
+                    Soup & Salad <span id="count-soup-salad" class="badge">0</span>
+                </button>
+                <button class="nav-item" data-filter="dessert" aria-label="Show desserts">
+                    Dessert <span id="count-dessert" class="badge">0</span>
+                </button>
+                <button class="nav-item" data-filter="drinks" aria-label="Show drinks">
+                    Drinks <span id="count-drinks" class="badge">0</span>
+                </button>
+                <button class="nav-item" data-filter="favorites" aria-label="Show favorites">
+                    Favorites ❤️ <span id="count-fav" class="badge">0</span>
+                </button>
+            </nav>
 
-        <div class="topbar-actions">
-          <div class="filter-dropdown-wrapper">
-            <select id="difficulty-select" class="custom-select">
-              <option value="all">Any Difficulty</option>
-              <option value="Easy">Easy</option>
-              <option value="Medium">Medium</option>
-              <option value="Hard">Hard</option>
-            </select>
-          </div>
-          <div class="filter-dropdown-wrapper">
-            <select id="time-select" class="custom-select">
-              <option value="all">Any Duration</option>
-              <option value="15">Under 15 mins</option>
-              <option value="30">Under 30 mins</option>
-              <option value="45">Under 45 mins</option>
-              <option value="60">Under 1 Hour</option>
-            </select>
-          </div>
-        </div>
-      </header>
+            <div class="sidebar-footer">
+                <div class="cooking-tip-box">
+                    <h3>Cooking Tip</h3>
+                    <p id="daily-tip">A sharp knife is a chef's best friend!</p>
+                </div>
+            </div>
+        </aside>
 
-      <!-- Hero Banner -->
-      <section class="hero-banner">
-        <div class="hero-text">
-          <span class="hero-chip">✨ Discover, Cook & Savor</span>
-          <h2>Explore 25 Hand-Crafted Culinary Masterpieces</h2>
-          <p>From 15-minute quick breakfasts to exquisite Michelin-level dinners, step-by-step guidance tailored for you.</p>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-card">
-            <span class="stat-num">25</span>
-            <span class="stat-label">Full Recipes</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">5</span>
-            <span class="stat-label">Categories</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">100%</span>
-            <span class="stat-label">Tested & Proven</span>
-          </div>
-        </div>
-      </section>
+        <main class="main-content">
+            <!-- Animated gradient mesh background div -->
+            <div class="gradient-mesh" aria-hidden="true"></div>
 
-      <!-- Recipe Grid -->
-      <section class="recipe-section">
-        <div class="section-header">
-          <div>
-            <h3 id="section-title">All Recipes</h3>
-            <p id="section-subtitle" class="text-muted">Showing 25 delicious recipes</p>
-          </div>
-          <div class="view-controls">
-            <button id="random-recipe-btn" class="btn btn-secondary">
-              🎲 Surprise Me!
-            </button>
-          </div>
-        </div>
+            <header class="topbar">
+                <div class="search-wrapper">
+                    <input type="text" id="search-input" placeholder="Search recipes, ingredients..." aria-label="Search recipes">
+                    <button id="clear-search" aria-label="Clear search">×</button>
+                </div>
+                
+                <div class="topbar-actions">
+                    <select id="difficulty-select" aria-label="Filter by difficulty">
+                        <option value="all">Any Difficulty</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                    <select id="time-select" aria-label="Filter by time">
+                        <option value="all">Any Time</option>
+                        <option value="15">Under 15 mins</option>
+                        <option value="30">Under 30 mins</option>
+                        <option value="60">Under 1 hour</option>
+                    </select>
+                    <button id="sound-toggle" aria-label="Toggle sound">🔊</button>
+                    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                </div>
+            </header>
 
-        <div class="recipes-grid" id="recipes-grid">
-          <!-- Dynamically populated -->
-        </div>
+            <section class="hero-banner">
+                <!-- Animated decorative SVG shapes -->
+                <svg class="hero-shapes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" aria-hidden="true" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;">
+                    <circle cx="100" cy="100" r="80" fill="rgba(255,107,107,0.2)">
+                        <animate attributeName="cy" values="100;120;100" dur="4s" repeatCount="indefinite" />
+                    </circle>
+                    <polygon points="600,100 650,200 550,200" fill="rgba(78,205,196,0.2)">
+                        <animateTransform attributeName="transform" type="rotate" from="0 600 150" to="360 600 150" dur="10s" repeatCount="indefinite" />
+                    </polygon>
+                </svg>
 
-        <div id="no-results" class="no-results hidden">
-          <div class="no-results-icon">🔍</div>
-          <h3>No matching recipes found</h3>
-          <p>Try adjusting your search terms, difficulty, or duration filters.</p>
-          <button id="reset-filters-btn" class="btn btn-primary">Reset Filters</button>
-        </div>
-      </section>
-    </main>
-  </div>
+                <div class="hero-text">
+                    <span class="hero-chip">Discover</span>
+                    <h2>What's Cooking Today?</h2>
+                    <p>Explore curated recipes for every occasion</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-num" id="total-recipes-stat">0</span>
+                        <span class="stat-label">Recipes</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num">5</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                </div>
+                
+                <!-- Scroll down indicator -->
+                <div class="scroll-indicator" aria-hidden="true" style="text-align: center; margin-top: 20px;">
+                    <span style="display:inline-block; animation: bounce 2s infinite;">↓</span>
+                </div>
+            </section>
 
-  <!-- Fullscreen Recipe Modal -->
-  <div class="modal-backdrop hidden" id="recipe-modal">
-    <div class="modal-dialog">
-      <button class="modal-close" id="modal-close-btn">&times;</button>
-      <div class="modal-body" id="modal-content">
-        <!-- Dynamically rendered -->
-      </div>
+            <section class="recipe-section">
+                <div class="section-header">
+                    <div>
+                        <h2 id="section-title">All Recipes</h2>
+                        <p id="section-subtitle">Find something delicious</p>
+                    </div>
+                    <div class="section-actions">
+                        <button id="random-recipe-btn" aria-label="Get a random recipe">🎲 Surprise Me</button>
+                    </div>
+                </div>
+
+                <div id="recipes-grid">
+                    <!-- Recipe cards dynamically populated here -->
+                </div>
+
+                <div id="no-results" style="display: none;">
+                    <h3>No recipes found</h3>
+                    <p>Try adjusting your search or filters.</p>
+                    <button id="reset-filters-btn">Reset Filters</button>
+                </div>
+            </section>
+            
+            <footer>
+                <div class="footer-content" style="text-align: center; padding: 2rem;">
+                    <p>&copy; 2026 Cooked App. All rights reserved.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">Twitter</a>
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
     </div>
-  </div>
 
-  <script src="recipes.js"></script>
-  <script src="app.js"></script>
+    <!-- Modals -->
+    <div id="recipe-modal" class="modal-backdrop" aria-hidden="true">
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button id="modal-close-btn" class="modal-close" aria-label="Close modal">×</button>
+            <div id="modal-content" class="modal-body">
+                <!-- Recipe details injected here -->
+            </div>
+        </div>
+    </div>
+    
+    <div id="timer-modal" class="modal-backdrop" aria-hidden="true" style="display:none;">
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="timer-title">
+            <button class="timer-close-btn" aria-label="Close timer modal">×</button>
+            <h3 id="timer-title">Cooking Timer</h3>
+            <div id="timer-display">00:00</div>
+            <div class="timer-controls">
+                <button id="timer-start">Start</button>
+                <button id="timer-pause">Pause</button>
+                <button id="timer-reset">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" aria-live="polite"></div>
+
+    <script src="recipes.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
